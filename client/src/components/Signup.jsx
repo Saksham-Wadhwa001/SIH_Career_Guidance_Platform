@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, ArrowLeft, Phone, MapPin, Calendar } from 'lucide-react';
 import { useUser } from '../context/UserContext';
+import { api } from '../utils/api';
 import toast from 'react-hot-toast';
 
 const Signup = () => {
@@ -109,43 +110,30 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  if (!validateForm()) return;
+    e.preventDefault();
+    
+    if (!validateForm()) return;
 
-  setIsLoading(true);
+    setIsLoading(true);
 
-  try {
-    // Create an object with only name, email, and password
-    const postData = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-    };
+    try {
+      const data = await api.post("/users/register", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
 
-    const response = await fetch("http://localhost:8000/api/v1/users/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(postData), // send only name, email, password
-    });
+      // Update user context with backend response
+      updateUser(data.data);
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || "Signup failed");
+      toast.success("Account created successfully!");
+      navigate("/login");
+    } catch (error) {
+      toast.error(error.message || "Signup failed");
+    } finally {
+      setIsLoading(false);
     }
-
-    // Update user context with backend response
-    updateUser(data.data);
-
-    toast.success("Account created successfully!");
-    navigate("/login"); // redirect to login after signup
-  } catch (error) {
-    toast.error(error.message || "Signup failed");
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
 
   return (

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, ArrowLeft } from 'lucide-react';
 import { useUser } from '../context/UserContext';
+import { api } from '../utils/api';
 import toast from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { updateUser } = useUser();
+  const { login } = useUser();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -51,43 +52,28 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  if (!validateForm()) return;
-  setIsLoading(true);
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+    setIsLoading(true);
 
-  try {
-    // Send login data to backend
-    const response = await fetch("http://localhost:8000/api/v1/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include", // needed if backend sends refresh token cookies
-      body: JSON.stringify({
+    try {
+      const data = await api.post("/users/login", {
         email: formData.email,
         password: formData.password,
-      }),
-    });
+      });
 
-    const data = await response.json();
+      // Use the context login which stores both user and token
+      login(data.data.user, data.data.accessToken);
 
-    if (!response.ok) {
-      throw new Error(data.message || "Invalid email or password");
+      toast.success("Login successful!");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.message || "Login failed");
+    } finally {
+      setIsLoading(false);
     }
-
-    // Save user info to context (remove password if sent)
-    updateUser(data.data.user);
-
-    // Optionally store access token in localStorage
-    localStorage.setItem("accessToken", data.data.accessToken);
-
-    toast.success("Login successful!");
-    navigate("/"); // redirect to home page
-  } catch (error) {
-    toast.error(error.message || "Login failed");
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   return (
     <div className="auth-container">

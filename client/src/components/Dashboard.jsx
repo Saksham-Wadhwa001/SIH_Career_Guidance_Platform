@@ -172,7 +172,7 @@ const Dashboard = () => {
           <div className="welcome-content">
             <div className="welcome-header">
               <h1 className="welcome-title">
-                Welcome{isAuthenticated && user?.name ? `, ${user.name}` : ''}! 👋
+                Welcome{isAuthenticated && (user?.fullname || user?.name) ? `, ${user.fullname || user.name}` : ''}! 👋
               </h1>
               <p className="welcome-subtitle">
                 Your personalized AI-powered career and education advisor for Jammu & Kashmir students. 

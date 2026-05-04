@@ -80,7 +80,7 @@ const Navbar = () => {
                 <div className="user-menu">
                   <Link to="/profile" className="user-profile">
                     <User className="user-icon" />
-                    <span className="user-name">{user?.name || 'Student'}</span>
+                    <span className="user-name">{user?.fullname || user?.name || 'Student'}</span>
                   </Link>
                   <button onClick={logout} className="logout-btn">
                     Logout

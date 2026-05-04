@@ -1,95 +1,63 @@
-// import React, { createContext, useContext, useState, useEffect } from 'react';
-
-// const ThemeContext = createContext();
-
-// export function ThemeProvider({ children }) {
-//   const [isDarkMode, setIsDarkMode] = useState(() => {
-//     const saved = localStorage.getItem('careersync-theme');
-//     return saved ? JSON.parse(saved) : false;
-//   });
-
-//   useEffect(() => {
-//     localStorage.setItem('careersync-theme', JSON.stringify(isDarkMode));
-//     document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-//   }, [isDarkMode]);
-
-//   const toggleTheme = () => {
-//     setIsDarkMode(!isDarkMode);
-//   };
-
-//   const value = {
-//     isDarkMode,
-//     toggleTheme
-//   };
-
-//   return (
-//     <ThemeContext.Provider value={value}>
-//       {children}
-//     </ThemeContext.Provider>
-//   );
-// }
-
-// export function useTheme() {
-//   const context = useContext(ThemeContext);
-//   if (!context) {
-//     throw new Error('useTheme must be used within a ThemeProvider');
-//   }
-//   return context;
-// }
-
-
-// import React, { createContext, useContext, useState, useEffect } from 'react';
-
-// const UserContext = createContext();
-
-// export function UserProvider({ children }) {
-//   const [user, setUser] = useState(null);
-
-//   // Example: store user in localStorage
-//   useEffect(() => {
-//     const savedUser = localStorage.getItem('careersync-user');
-//     if (savedUser) setUser(JSON.parse(savedUser));
-//   }, []);
-
-//   useEffect(() => {
-//     localStorage.setItem('careersync-user', JSON.stringify(user));
-//   }, [user]);
-
-//   const login = (userData) => setUser(userData);
-//   const logout = () => setUser(null);
-
-//   return (
-//     <UserContext.Provider value={{ user, login, logout }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// }
-
-// export function useUser() {
-//   const context = useContext(UserContext);
-//   if (!context) {
-//     throw new Error('useUser must be used within a UserProvider');
-//   }
-//   return context;
-// }
-
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { api } from '../utils/api';
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);         // 👈 added
-  const [quizResults, setQuizResults] = useState(null);  // 👈 added
+  const [loading, setLoading] = useState(true);
+  const [quizResults, setQuizResults] = useState(null);
+  const [preferences, setPreferences] = useState({
+    location: '',
+    stream: '',
+    interests: [],
+  });
 
-  // Load user from localStorage
+  // Derived state
+  const isAuthenticated = !!user;
+
+  // On mount: try to restore session from localStorage, then validate with backend
   useEffect(() => {
-    const savedUser = localStorage.getItem('careersync-user');
-    if (savedUser) setUser(JSON.parse(savedUser));
+    const restoreSession = async () => {
+      const savedUser = localStorage.getItem('careersync-user');
+      const accessToken = localStorage.getItem('accessToken');
+
+      if (savedUser && accessToken) {
+        // Optimistically set the user from localStorage
+        setUser(JSON.parse(savedUser));
+
+        // Validate the token with the backend
+        try {
+          const data = await api.get('/users/current-user');
+          setUser(data.data);
+          localStorage.setItem('careersync-user', JSON.stringify(data.data));
+        } catch {
+          // Token expired or invalid — clear session
+          setUser(null);
+          localStorage.removeItem('careersync-user');
+          localStorage.removeItem('accessToken');
+        }
+      }
+
+      // Restore saved preferences
+      const savedPrefs = localStorage.getItem('careersync-preferences');
+      if (savedPrefs) {
+        setPreferences(JSON.parse(savedPrefs));
+      }
+
+      // Restore saved quiz results
+      const savedQuiz = localStorage.getItem('careersync-quiz');
+      if (savedQuiz) {
+        setQuizResults(JSON.parse(savedQuiz));
+      }
+
+      setLoading(false);
+    };
+
+    restoreSession();
   }, []);
 
-  // Save user to localStorage
+  // Persist user to localStorage whenever it changes
   useEffect(() => {
     if (user) {
       localStorage.setItem('careersync-user', JSON.stringify(user));
@@ -98,15 +66,49 @@ export function UserProvider({ children }) {
     }
   }, [user]);
 
-  const login = (userData) => setUser(userData);
-  const logout = () => setUser(null);
+  // Persist preferences
+  useEffect(() => {
+    localStorage.setItem('careersync-preferences', JSON.stringify(preferences));
+  }, [preferences]);
+
+  // Persist quiz results
+  useEffect(() => {
+    if (quizResults) {
+      localStorage.setItem('careersync-quiz', JSON.stringify(quizResults));
+    }
+  }, [quizResults]);
+
+  const login = (userData, accessToken) => {
+    setUser(userData);
+    if (accessToken) {
+      localStorage.setItem('accessToken', accessToken);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await api.post('/users/logout');
+    } catch {
+      // Even if the backend call fails, still clear local state
+    }
+    setUser(null);
+    localStorage.removeItem('careersync-user');
+    localStorage.removeItem('accessToken');
+  };
+
   const updateUser = (userData) => setUser(userData);
 
+  const updatePreferences = (newPrefs) => {
+    setPreferences(prev => ({ ...prev, ...newPrefs }));
+  };
+
   return (
-    <UserContext.Provider value={{ 
+    <UserContext.Provider value={{
       user, login, logout, updateUser,
-      loading, setLoading,       // 👈 now available
-      quizResults, setQuizResults // 👈 now available
+      loading, setLoading,
+      quizResults, setQuizResults,
+      isAuthenticated,
+      preferences, updatePreferences,
     }}>
       {children}
     </UserContext.Provider>

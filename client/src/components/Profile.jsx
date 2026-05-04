@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { User, Save, Edit3, BookOpen, MapPin, Calendar, Award, BarChart3 } from 'lucide-react';
 import { useUser } from '../context/UserContext';
+import { api } from '../utils/api';
 import toast from 'react-hot-toast';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { user, updateUser, isAuthenticated, quizResults, preferences, updatePreferences } = useUser();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -78,15 +81,15 @@ const Profile = () => {
   useEffect(() => {
     if (user) {
       setFormData({
-        name: user.name || '',
+        name: user.fullname || user.name || '',
         email: user.email || '',
         phone: user.phone || '',
         dateOfBirth: user.dateOfBirth || '',
         gender: user.gender || '',
-        location: user.location || preferences.location || '',
+        location: user.location || preferences?.location || '',
         currentClass: user.currentClass || '',
-        stream: user.stream || preferences.stream || '',
-        interests: user.interests || preferences.interests || [],
+        stream: user.stream || preferences?.stream || '',
+        interests: user.interests || preferences?.interests || [],
         academicGoals: user.academicGoals || '',
         preferredSubjects: user.preferredSubjects || []
       });
@@ -114,13 +117,25 @@ const Profile = () => {
     setIsLoading(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      // Call the backend to update account details (fullname + email)
+      const data = await api.patch("/users/update-account", {
+        fullname: formData.name,
+        email: formData.email,
+      });
+
+      // Update user context with backend response
       const updatedUser = {
-        ...user,
-        ...formData,
-        updatedAt: new Date().toISOString()
+        ...data.data,
+        // Keep local-only fields that aren't stored on the backend yet
+        phone: formData.phone,
+        dateOfBirth: formData.dateOfBirth,
+        gender: formData.gender,
+        location: formData.location,
+        currentClass: formData.currentClass,
+        stream: formData.stream,
+        interests: formData.interests,
+        academicGoals: formData.academicGoals,
+        preferredSubjects: formData.preferredSubjects,
       };
       
       updateUser(updatedUser);
@@ -133,7 +148,7 @@ const Profile = () => {
       setIsEditing(false);
       toast.success('Profile updated successfully!');
     } catch (error) {
-      toast.error('Failed to update profile. Please try again.');
+      toast.error(error.message || 'Failed to update profile. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -142,15 +157,15 @@ const Profile = () => {
   const handleCancel = () => {
     if (user) {
       setFormData({
-        name: user.name || '',
+        name: user.fullname || user.name || '',
         email: user.email || '',
         phone: user.phone || '',
         dateOfBirth: user.dateOfBirth || '',
         gender: user.gender || '',
-        location: user.location || preferences.location || '',
+        location: user.location || preferences?.location || '',
         currentClass: user.currentClass || '',
-        stream: user.stream || preferences.stream || '',
-        interests: user.interests || preferences.interests || [],
+        stream: user.stream || preferences?.stream || '',
+        interests: user.interests || preferences?.interests || [],
         academicGoals: user.academicGoals || '',
         preferredSubjects: user.preferredSubjects || []
       });
@@ -164,22 +179,13 @@ const Profile = () => {
         <div className="container">
           <div className="login-prompt">
             <User className="login-icon" />
-            <h2>Create Your Profile</h2>
-            <p>Get personalized recommendations by creating your profile</p>
+            <h2>Login to View Profile</h2>
+            <p>Sign in to view and manage your profile information</p>
             <button 
-              onClick={() => {
-                // Create a basic user profile and set editing mode
-                const basicUser = {
-                  name: 'Student',
-                  email: 'student@example.com',
-                  createdAt: new Date().toISOString()
-                };
-                updateUser(basicUser);
-                setIsEditing(true);
-              }}
+              onClick={() => navigate('/login')}
               className="btn btn-primary"
             >
-              Get Started
+              Go to Login
             </button>
           </div>
         </div>

@@ -6,7 +6,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "http://localhost:5174"],
     credentials: true,
   })
 );
@@ -22,5 +22,19 @@ import userRouter from "./routes/user.route.js";
 
 // routes declaration
 app.use("/api/v1/users", userRouter);
+
+// Global error-handling middleware
+// Catches errors thrown by asyncHandler / ApiError and returns clean JSON
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+    errors: err.errors || [],
+  });
+});
 
 export default app;
