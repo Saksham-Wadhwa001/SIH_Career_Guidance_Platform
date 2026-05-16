@@ -1,2 +1,2 @@
 // Database
-export const DB_NAME = 'Auth-System';
+export const DB_NAME = 'careersync';
