@@ -188,8 +188,9 @@ const Navbar = () => {
           background: var(--navbar-bg);
           border-bottom: 1px solid var(--border-color);
           z-index: 1000;
-          box-shadow: var(--shadow-sm);
-          backdrop-filter: blur(10px);
+          box-shadow: 0 1px 12px rgba(0,0,0,0.04);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
         }
 
         .navbar-content {
@@ -213,12 +214,18 @@ const Navbar = () => {
         .logo-icon {
           width: 40px;
           height: 40px;
-          background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-          border-radius: 10px;
+          background: linear-gradient(135deg, #6366f1, #a855f7);
+          border-radius: 12px;
           display: flex;
           align-items: center;
           margin-left: 5px;
           justify-content: center;
+          box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+          transition: transform 0.3s ease;
+        }
+
+        .navbar-logo:hover .logo-icon {
+          transform: scale(1.08);
         }
 
         .logo-svg {
@@ -228,10 +235,12 @@ const Navbar = () => {
         }
 
         .logo-text {
-          background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+          background: linear-gradient(135deg, #6366f1, #a855f7);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
+          font-family: 'Inter', sans-serif;
+          letter-spacing: -0.02em;
         }
 
         .desktop-nav {
@@ -397,15 +406,17 @@ const Navbar = () => {
           padding: 0.5rem 1rem;
           text-decoration: none;
           color: white;
-          background: var(--primary-color);
-          font-weight: 500;
+          background: linear-gradient(135deg, #6366f1, #a855f7);
+          font-weight: 600;
           border-radius: 0.5rem;
-          transition: all 0.2s ease;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
         }
 
         .signup-btn:hover {
-          background: var(--primary-hover);
+          box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
           transform: translateY(-1px);
+          filter: brightness(1.05);
         }
 
         .mobile-menu-btn {
