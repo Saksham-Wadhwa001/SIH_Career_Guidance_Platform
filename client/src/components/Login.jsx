@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, ArrowLeft } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 import { api } from '../utils/api';
@@ -7,7 +7,9 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useUser();
+  const redirectTo = location.state?.from || '/';
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -67,7 +69,7 @@ const Login = () => {
       login(data.data.user, data.data.accessToken);
 
       toast.success("Login successful!");
-      navigate("/");
+      navigate(redirectTo);
     } catch (error) {
       toast.error(error.message || "Login failed");
     } finally {

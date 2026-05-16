@@ -12,6 +12,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Footer from './components/Footer';
 import AIChatbot from './components/AIChatbot';
+import ProtectedRoute from './components/ProtectedRoute';
 import { UserProvider } from './context/UserContext';
 import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
@@ -36,11 +37,11 @@ function App() {
             <main className="main-content">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/quiz" element={<Quiz />} />
-                <Route path="/courses" element={<CourseMapper />} />
+                <Route path="/quiz" element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
+                <Route path="/courses" element={<ProtectedRoute><CourseMapper /></ProtectedRoute>} />
                 <Route path="/colleges" element={<CollegeDirectory />} />
                 <Route path="/timeline" element={<Timeline />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
               </Routes>
