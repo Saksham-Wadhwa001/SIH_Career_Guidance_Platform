@@ -172,7 +172,7 @@ const Navbar = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
 
         .container{
           max-width: 1400px;

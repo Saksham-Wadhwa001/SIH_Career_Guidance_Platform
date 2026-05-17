@@ -1,7 +1,11 @@
 import dotenv from 'dotenv';
-import connectDB from './db/index.js';
-import app from './app.js';
 dotenv.config();
+
+// Dynamic imports so that dotenv is loaded BEFORE any module
+// reads process.env at the top level (ES module imports are hoisted,
+// so static imports would run before dotenv.config()).
+const { default: connectDB } = await import('./db/index.js');
+const { default: app } = await import('./app.js');
 
 const PORT = process.env.PORT || 8000;
 
