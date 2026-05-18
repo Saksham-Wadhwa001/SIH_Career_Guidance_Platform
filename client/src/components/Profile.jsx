@@ -411,7 +411,7 @@ const Profile = () => {
           {/* Quiz Results Summary */}
           {quizResults && (
             <div className="profile-section">
-              <h2 className="section-title">Aptitude Assessment Results</h2>
+              <h2 className="section-title">CareerSync Interest Mapper Results</h2>
               <div className="quiz-summary">
                 <div className="quiz-summary-item">
                   <BarChart3 className="summary-icon" />

@@ -8,7 +8,7 @@ const Footer = () => {
 
   const quickLinks = [
     { name: 'Dashboard', href: '/' },
-    { name: 'Aptitude Quiz', href: '/quiz' },
+    { name: 'CareerSync Interest Mapper', href: '/quiz' },
     { name: 'Course Mapper', href: '/courses' },
     { name: 'Colleges', href: '/colleges' },
     { name: 'Timeline', href: '/timeline' },

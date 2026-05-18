@@ -16,6 +16,38 @@
 //   const questions = [
 //     {
 //       id: 1,
+//       question: "What is your current academic stage?",
+//       type: "single",
+//       options: [
+//         { value: "choosing_stream", label: "Looking to choose a stream (e.g., after 10th)", category: "vocational" },
+//         { value: "chosen_stream", label: "Already chosen a stream and looking for career options", category: "science" }
+//       ]
+//     },
+//     {
+//       id: 2,
+//       question: "If you have chosen a stream or are leaning towards one, which one is it?",
+//       type: "single",
+//       options: [
+//         { value: "science_medical", label: "Science (Medical)", category: "science" },
+//         { value: "science_non_medical", label: "Science (Non-Medical)", category: "science" },
+//         { value: "commerce", label: "Commerce", category: "commerce" },
+//         { value: "arts", label: "Arts/Humanities", category: "arts" },
+//         { value: "not_sure", label: "Not sure yet", category: "vocational" }
+//       ]
+//     },
+//     {
+//       id: 3,
+//       question: "What kind of career paths interest you the most in Science?",
+//       type: "single",
+//       options: [
+//         { value: "btech", label: "B.Tech (Engineering)", category: "science" },
+//         { value: "bsc", label: "B.Sc (Research / Pure Sciences)", category: "science" },
+//         { value: "mbbs", label: "MBBS / Medical fields", category: "science" },
+//         { value: "not_applicable", label: "Not applicable to me", category: "arts" }
+//       ]
+//     },
+//     {
+//       id: 4,
 //       question: "What type of activities do you enjoy most?",
 //       type: "single",
 //       options: [
@@ -26,20 +58,20 @@
 //       ]
 //     },
 //     {
-//       id: 2,
-//       question: "Which subjects did you perform best in during school?",
+//       id: 5,
+//       question: "Which subjects do you perform best in?",
 //       type: "multiple",
 //       options: [
 //         { value: "mathematics", label: "Mathematics", category: "science" },
 //         { value: "science", label: "Science (Physics, Chemistry, Biology)", category: "science" },
-//         { value: "lannp guages", label: "Languages and Literature", category: "arts" },
+//         { value: "languages", label: "Languages and Literature", category: "arts" },
 //         { value: "social_studies", label: "Social Studies and History", category: "arts" },
 //         { value: "commerce", label: "Commerce and Economics", category: "commerce" },
 //         { value: "computer", label: "Computer Science", category: "science" }
 //       ]
 //     },
 //     {
-//       id: 3,
+//       id: 6,
 //       question: "What kind of work environment appeals to you?",
 //       type: "single",
 //       options: [
@@ -51,32 +83,7 @@
 //       ]
 //     },
 //     {
-//       id: 4,
-//       question: "What are your career aspirations?",
-//       type: "single",
-//       options: [
-//         { value: "research", label: "Research and development", category: "science" },
-//         { value: "business", label: "Business and entrepreneurship", category: "commerce" },
-//         { value: "arts", label: "Creative and artistic fields", category: "arts" },
-//         { value: "service", label: "Public service and social work", category: "arts" },
-//         { value: "technology", label: "Technology and innovation", category: "science" },
-//         { value: "education", label: "Education and training", category: "arts" }
-//       ]
-//     },
-//     {
-//       id: 5,
-//       question: "How do you prefer to learn new things?",
-//       type: "single",
-//       options: [
-//         { value: "theoretical", label: "Through books and theoretical study", category: "science" },
-//         { value: "practical", label: "Hands-on practice and experimentation", category: "vocational" },
-//         { value: "discussion", label: "Group discussions and debates", category: "arts" },
-//         { value: "visual", label: "Visual aids and demonstrations", category: "arts" },
-//         { value: "case_studies", label: "Real-world case studies", category: "commerce" }
-//       ]
-//     },
-//     {
-//       id: 6,
+//       id: 7,
 //       question: "What motivates you most in your studies?",
 //       type: "single",
 //       options: [
@@ -85,21 +92,6 @@
 //         { value: "success", label: "Achieving success and recognition", category: "commerce" },
 //         { value: "helping", label: "Helping others and making a difference", category: "arts" },
 //         { value: "challenge", label: "Solving complex problems", category: "science" }
-//       ]
-//     },
-//     {
-//       id: 7,
-//       question: "Which of these career paths interests you?",
-//       type: "multiple",
-//       options: [
-//         { value: "engineering", label: "Engineering and Technology", category: "science" },
-//         { value: "medicine", label: "Medicine and Healthcare", category: "science" },
-//         { value: "business", label: "Business and Management", category: "commerce" },
-//         { value: "arts", label: "Arts and Humanities", category: "arts" },
-//         { value: "law", label: "Law and Legal Studies", category: "arts" },
-//         { value: "education", label: "Education and Teaching", category: "arts" },
-//         { value: "agriculture", label: "Agriculture and Environmental Science", category: "science" },
-//         { value: "tourism", label: "Tourism and Hospitality", category: "commerce" }
 //       ]
 //     },
 //     {
@@ -311,7 +303,7 @@
 //       <div className="quiz-results">
 //         <div className="container">
 //           <div className="results-header">
-//             <h1 className="results-title">Your Aptitude Assessment Results</h1>
+//             <h1 className="results-title">Your CareerSync Interest Mapper Results</h1>
 //             <p className="results-subtitle">
 //               Based on your responses, here are your personalized recommendations
 //             </p>
@@ -512,6 +504,38 @@ const Quiz = () => {
   const questions = [
     {
       id: 1,
+      question: "What is your current academic stage?",
+      type: "single",
+      options: [
+        { value: "choosing_stream", label: "Looking to choose a stream (e.g., after 10th)", category: "vocational" },
+        { value: "chosen_stream", label: "Already chosen a stream and looking for career options", category: "science" }
+      ]
+    },
+    {
+      id: 2,
+      question: "If you have chosen a stream or are leaning towards one, which one is it?",
+      type: "single",
+      options: [
+        { value: "science_medical", label: "Science (Medical)", category: "science" },
+        { value: "science_non_medical", label: "Science (Non-Medical)", category: "science" },
+        { value: "commerce", label: "Commerce", category: "commerce" },
+        { value: "arts", label: "Arts/Humanities", category: "arts" },
+        { value: "not_sure", label: "Not sure yet", category: "vocational" }
+      ]
+    },
+    {
+      id: 3,
+      question: "What kind of career paths interest you the most in Science?",
+      type: "single",
+      options: [
+        { value: "btech", label: "B.Tech (Engineering)", category: "science" },
+        { value: "bsc", label: "B.Sc (Research / Pure Sciences)", category: "science" },
+        { value: "mbbs", label: "MBBS / Medical fields", category: "science" },
+        { value: "not_applicable", label: "Not applicable to me", category: "arts" }
+      ]
+    },
+    {
+      id: 4,
       question: "What type of activities do you enjoy most?",
       type: "single",
       options: [
@@ -522,8 +546,8 @@ const Quiz = () => {
       ]
     },
     {
-      id: 2,
-      question: "Which subjects did you perform best in during school?",
+      id: 5,
+      question: "Which subjects do you perform best in?",
       type: "multiple",
       options: [
         { value: "mathematics", label: "Mathematics", category: "science" },
@@ -535,7 +559,7 @@ const Quiz = () => {
       ]
     },
     {
-      id: 3,
+      id: 6,
       question: "What kind of work environment appeals to you?",
       type: "single",
       options: [
@@ -547,32 +571,7 @@ const Quiz = () => {
       ]
     },
     {
-      id: 4,
-      question: "What are your career aspirations?",
-      type: "single",
-      options: [
-        { value: "research", label: "Research and development", category: "science" },
-        { value: "business", label: "Business and entrepreneurship", category: "commerce" },
-        { value: "arts", label: "Creative and artistic fields", category: "arts" },
-        { value: "service", label: "Public service and social work", category: "arts" },
-        { value: "technology", label: "Technology and innovation", category: "science" },
-        { value: "education", label: "Education and training", category: "arts" }
-      ]
-    },
-    {
-      id: 5,
-      question: "How do you prefer to learn new things?",
-      type: "single",
-      options: [
-        { value: "theoretical", label: "Through books and theoretical study", category: "science" },
-        { value: "practical", label: "Hands-on practice and experimentation", category: "vocational" },
-        { value: "discussion", label: "Group discussions and debates", category: "arts" },
-        { value: "visual", label: "Visual aids and demonstrations", category: "arts" },
-        { value: "case_studies", label: "Real-world case studies", category: "commerce" }
-      ]
-    },
-    {
-      id: 6,
+      id: 7,
       question: "What motivates you most in your studies?",
       type: "single",
       options: [
@@ -581,21 +580,6 @@ const Quiz = () => {
         { value: "success", label: "Achieving success and recognition", category: "commerce" },
         { value: "helping", label: "Helping others and making a difference", category: "arts" },
         { value: "challenge", label: "Solving complex problems", category: "science" }
-      ]
-    },
-    {
-      id: 7,
-      question: "Which of these career paths interests you?",
-      type: "multiple",
-      options: [
-        { value: "engineering", label: "Engineering and Technology", category: "science" },
-        { value: "medicine", label: "Medicine and Healthcare", category: "science" },
-        { value: "business", label: "Business and Management", category: "commerce" },
-        { value: "arts", label: "Arts and Humanities", category: "arts" },
-        { value: "law", label: "Law and Legal Studies", category: "arts" },
-        { value: "education", label: "Education and Teaching", category: "arts" },
-        { value: "agriculture", label: "Agriculture and Environmental Science", category: "science" },
-        { value: "tourism", label: "Tourism and Hospitality", category: "commerce" }
       ]
     },
     {
@@ -737,7 +721,7 @@ const Quiz = () => {
       <div className="quiz-results">
         <div className="container">
           <div className="results-header">
-            <h1 className="results-title">Your Aptitude Assessment Results</h1>
+            <h1 className="results-title">Your CareerSync Interest Mapper Results</h1>
             <p className="results-subtitle">
               Based on your responses, here are your personalized recommendations
             </p>

@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const navigation = [
     { name: 'Dashboard', href: '/', icon: Home },
-    { name: 'Aptitude Quiz', href: '/quiz', icon: BarChart3 },
+    { name: 'CareerSync Interest Mapper', href: '/quiz', icon: BarChart3 },
     { name: 'Course Mapper', href: '/courses', icon: BookOpen },
     { name: 'Colleges', href: '/colleges', icon: MapPin },
     { name: 'Timeline', href: '/timeline', icon: Calendar },

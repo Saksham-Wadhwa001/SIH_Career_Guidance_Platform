@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   const quickActions = [
     {
-      title: 'Take Aptitude Quiz',
+      title: 'CareerSync Interest Mapper',
       description: 'Discover your interests and get personalized course recommendations',
       icon: BarChart3,
       href: '/quiz',
@@ -299,7 +299,7 @@ const Dashboard = () => {
                   <CheckCircle className="summary-icon" />
                 </div>
                 <div className="quiz-summary-content">
-                  <h3 className="summary-title">Aptitude Assessment Complete</h3>
+                  <h3 className="summary-title">CareerSync Interest Mapper Complete</h3>
                   <p className="summary-subtitle">
                     Based on your responses, we've identified your interests and strengths
                   </p>
