@@ -209,10 +209,10 @@ const Timeline = () => {
 
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case 'high': return 'text-red-600 bg-red-50 border-red-200';
-      case 'medium': return 'text-yellow-600 bg-yellow-50 border-yellow-200';
-      case 'low': return 'text-green-600 bg-green-50 border-green-200';
-      default: return 'text-gray-600 bg-gray-50 border-gray-200';
+      case 'high': return 'priority-high';
+      case 'medium': return 'priority-medium';
+      case 'low': return 'priority-low';
+      default: return 'priority-default';
     }
   };
 
@@ -229,13 +229,13 @@ const Timeline = () => {
 
   const getCategoryColor = (category) => {
     const colors = {
-      admission: 'text-blue-600 bg-blue-50',
-      exam: 'text-red-600 bg-red-50',
-      scholarship: 'text-green-600 bg-green-50',
-      registration: 'text-purple-600 bg-purple-50',
-      result: 'text-orange-600 bg-orange-50'
+      admission: 'category-admission',
+      exam: 'category-exam',
+      scholarship: 'category-scholarship',
+      registration: 'category-registration',
+      result: 'category-result'
     };
-    return colors[category] || 'text-gray-600 bg-gray-50';
+    return colors[category] || 'category-default';
   };
 
   const formatDate = (dateString) => {

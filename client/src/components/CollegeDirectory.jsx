@@ -253,6 +253,217 @@ const CollegeDirectory = () => {
         'Community engagement',
         'Skill-based programs'
       ]
+    },
+    {
+      id: 7,
+      name: 'National Institute of Technology (NIT), Srinagar',
+      location: 'Srinagar, Jammu & Kashmir',
+      state: 'jammu_kashmir',
+      type: 'Government (Institute of National Importance)',
+      established: 1960,
+      rating: 4.5,
+      totalStudents: 3500,
+      courses: ['B.Tech', 'M.Tech', 'M.Sc.', 'Ph.D.'],
+      streams: ['engineering', 'science'],
+      cutOffs: {
+        'B.Tech': 'JEE Main Rank: 25,000 - 80,000',
+        'M.Tech': 'GATE Score Required',
+        'M.Sc.': 'IIT JAM Rank'
+      },
+      facilities: ['Library', 'Hostel', 'High-Tech Labs', 'Sports Complex', 'Cafeteria', 'WiFi', 'Innovation Cell', 'Medical Center'],
+      contact: {
+        phone: '+91-194-2422032',
+        email: 'info@nitsri.ac.in',
+        website: 'www.nitsri.ac.in'
+      },
+      address: 'NIT Srinagar, Hazratbal, Srinagar - 190006',
+      admissionProcess: 'Entrance Exam (JEE Main / JoSAA Counseling)',
+      fees: {
+        'B.Tech': '₹1,20,000-1,40,000/year',
+        'M.Tech': '₹80,000-1,00,000/year',
+        'M.Sc.': '₹40,000-60,000/year'
+      },
+      highlights: [
+        'Institute of National Importance',
+        'Excellent placement records in top tech companies',
+        'Home state quota available for J&K students',
+        'Stunning campus next to Dal Lake'
+      ]
+    },
+    {
+      id: 8,
+      name: 'Indian Institute of Technology (IIT), Jammu',
+      location: 'Jammu, Jammu & Kashmir',
+      state: 'jammu_kashmir',
+      type: 'Government (Institute of National Importance)',
+      established: 2016,
+      rating: 4.6,
+      totalStudents: 1200,
+      courses: ['B.Tech', 'M.Tech', 'Ph.D.'],
+      streams: ['engineering', 'science'],
+      cutOffs: {
+        'B.Tech': 'JEE Advanced Rank: 4,000 - 15,000',
+        'M.Tech': 'GATE Score Required'
+      },
+      facilities: ['Library', 'Hostel', 'Advanced Research Labs', 'Sports Complex', 'Cafeteria', 'WiFi', 'Incubation Center'],
+      contact: {
+        phone: '+91-191-2570381',
+        email: 'info@iitjammu.ac.in',
+        website: 'www.iitjammu.ac.in'
+      },
+      address: 'IIT Jammu, Jagti, Nagrota, Jammu - 181221',
+      admissionProcess: 'Entrance Exam (JEE Advanced / JoSAA Counseling)',
+      fees: {
+        'B.Tech': '₹2,00,000-2,20,000/year',
+        'M.Tech': '₹30,000-50,000/year'
+      },
+      highlights: [
+        'Premier engineering institute of India',
+        'World-class faculty and research facilities',
+        'Rapidly growing infrastructure',
+        'Top-tier corporate placements'
+      ]
+    },
+    {
+      id: 9,
+      name: 'Government Medical College (GMC), Srinagar',
+      location: 'Srinagar, Jammu & Kashmir',
+      state: 'jammu_kashmir',
+      type: 'Government',
+      established: 1959,
+      rating: 4.7,
+      totalStudents: 1500,
+      courses: ['MBBS', 'MD', 'MS', 'B.Sc. Paramedical'],
+      streams: ['medical', 'science'],
+      cutOffs: {
+        'MBBS': 'NEET UG Score: 550+',
+        'MD/MS': 'NEET PG Qualified',
+        'B.Sc. Paramedical': 'JKBOPEE Merit'
+      },
+      facilities: ['Library', 'Hostel', 'Clinical Labs', 'Attached Hospital', 'Cafeteria', 'WiFi', 'Auditorium'],
+      contact: {
+        phone: '+91-194-2504114',
+        email: 'principal@gmcs.edu.in',
+        website: 'www.gmcs.edu.in'
+      },
+      address: 'GMC Srinagar, Karan Nagar, Srinagar - 190010',
+      admissionProcess: 'Entrance Exam (NEET UG / BOPEE Counseling)',
+      fees: {
+        'MBBS': '₹25,000-30,000/year',
+        'MD/MS': '₹50,000-75,000/year',
+        'B.Sc. Paramedical': '₹10,000-20,000/year'
+      },
+      highlights: [
+        'Oldest and most prestigious medical college in Kashmir',
+        'Attached to major tertiary care hospitals',
+        'Highly subsidized government fee structure',
+        'Excellent clinical exposure'
+      ]
+    },
+    {
+      id: 10,
+      name: 'Shri Mata Vaishno Devi University (SMVDU)',
+      location: 'Katra, Jammu & Kashmir',
+      state: 'jammu_kashmir',
+      type: 'State/Deemed University',
+      established: 1999,
+      rating: 4.2,
+      totalStudents: 2200,
+      courses: ['B.Tech', 'B.Arch', 'MBA', 'M.Sc.', 'M.A.', 'Ph.D.'],
+      streams: ['engineering', 'architecture', 'commerce', 'science', 'arts'],
+      cutOffs: {
+        'B.Tech': 'JEE Main Score / CUET',
+        'B.Arch': 'NATA Score',
+        'MBA': 'MAT/CMAT/CAT Score'
+      },
+      facilities: ['Library', 'Hostel', 'Laboratory', 'Sports Complex', 'Cafeteria', 'WiFi', 'Bank/ATM', 'Medical Center'],
+      contact: {
+        phone: '+91-1991-285524',
+        email: 'info@smvdu.ac.in',
+        website: 'www.smvdu.ac.in'
+      },
+      address: 'SMVDU Campus, Sub-Post Office, Katra - 182320',
+      admissionProcess: 'Entrance Exams (JEE, NATA, CUET) & Direct Counseling',
+      fees: {
+        'B.Tech': '₹1,30,000-1,50,000/year',
+        'B.Arch': '₹1,30,000-1,50,000/year',
+        'MBA': '₹1,50,000-1,70,000/year'
+      },
+      highlights: [
+        'Fully residential campus at the foothills of Trikuta Mountains',
+        'Funded by Shri Mata Vaishno Devi Shrine Board',
+        'Strong alumni network and placements',
+        'Excellent architecture and management programs'
+      ]
+    },
+    {
+      id: 11,
+      name: 'Indian Institute of Management (IIM), Jammu',
+      location: 'Jammu, Jammu & Kashmir',
+      state: 'jammu_kashmir',
+      type: 'Government (Institute of National Importance)',
+      established: 2016,
+      rating: 4.6,
+      totalStudents: 800,
+      courses: ['MBA', 'IPM (BBA+MBA)', 'Ph.D.'],
+      streams: ['commerce'],
+      cutOffs: {
+        'MBA': 'CAT Percentile: 90+',
+        'IPM': 'JIPMAT Score'
+      },
+      facilities: ['Library', 'Hostel', 'Seminar Halls', 'Sports Complex', 'Cafeteria', 'WiFi', 'Business Incubator'],
+      contact: {
+        phone: '+91-191-2585837',
+        email: 'info@iimj.ac.in',
+        website: 'www.iimj.ac.in'
+      },
+      address: 'IIM Jammu, Jagti, Jammu - 181221',
+      admissionProcess: 'Entrance Exam (CAT / JIPMAT) followed by Personal Interview',
+      fees: {
+        'MBA': '₹8,00,000-9,00,000/year',
+        'IPM': '₹5,00,000-6,00,000/year'
+      },
+      highlights: [
+        'Offers the unique 5-year Integrated Programme in Management (IPM)',
+        'Off-campus center in Srinagar for executive education',
+        'International student exchange programs',
+        '100% placement record in top MNCs'
+      ]
+    },
+    {
+      id: 12,
+      name: 'Sher-e-Kashmir University of Agricultural Sciences and Technology of Jammu (SKUAST-J)',
+      location: 'Jammu, Jammu & Kashmir',
+      state: 'jammu_kashmir',
+      type: 'State University',
+      established: 1999,
+      rating: 4.1,
+      totalStudents: 2000,
+      courses: ['B.Sc. Agriculture', 'B.V.Sc. & A.H.', 'B.Tech Biotechnology', 'M.Sc.', 'Ph.D.'],
+      streams: ['agriculture', 'science', 'medical'],
+      cutOffs: {
+        'B.Sc. Agriculture': 'SKUAST-J CET Merit',
+        'B.V.Sc.': 'SKUAST-J CET / NEET'
+      },
+      facilities: ['Library', 'Hostel', 'Farms', 'Veterinary Clinics', 'Cafeteria', 'WiFi', 'Sports Complex'],
+      contact: {
+        phone: '+91-191-2262011',
+        email: 'registrar@skuast.org',
+        website: 'www.skuast.org'
+      },
+      address: 'SKUAST-Jammu, Main Campus Chatha, Jammu - 180009',
+      admissionProcess: 'University Entrance Test (SKUAST-J CET)',
+      fees: {
+        'B.Sc. Agriculture': '₹20,000-35,000/year',
+        'B.V.Sc.': '₹30,000-45,000/year',
+        'B.Tech Biotechnology': '₹40,000-55,000/year'
+      },
+      highlights: [
+        'Dedicated to agricultural research in the Jammu region',
+        'Excellent veterinary sciences program',
+        'Promotes agri-entrepreneurship',
+        'Hands-on field training for students'
+      ]
     }
   ];
 
