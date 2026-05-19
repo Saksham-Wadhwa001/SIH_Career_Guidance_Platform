@@ -5,7 +5,7 @@
  * - Parses JSON responses and extracts error messages
  */
 
-const API_BASE_URL = "https://sih-backend.onrender.com/api/v1";
+const API_BASE_URL = "https://sih-career-guidance-platform-1.onrender.com/api/v1";
 
 /**
  * Make an API request with automatic auth handling.
