@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 app.use(
   cors({
     origin: [
@@ -11,7 +13,7 @@ app.use(
       "http://localhost:5174", 
       "http://127.0.0.1:5173", 
       "http://127.0.0.1:5174",
-      "https://sih-career-platform.vercel.app"
+      "https://sih-career-guidance-platform.vercel.app"
     ],
     credentials: true,
   })

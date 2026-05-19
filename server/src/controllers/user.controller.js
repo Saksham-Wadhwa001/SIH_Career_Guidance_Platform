@@ -70,7 +70,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(user);
   const loggedInUser = await User.findById(user._id).select("-password -refreshToken");
 
-  const options = { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax" };
+  const options = { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" };
 
   return res
     .status(200)
@@ -82,7 +82,7 @@ const loginUser = asyncHandler(async (req, res) => {
 const logOutUser = asyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(req.user._id, { $unset: { refreshToken: 1 } }, { new: true });
 
-  const options = { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax" };
+  const options = { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" };
 
   return res
     .status(200)
@@ -103,7 +103,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     if (!user) throw new ApiError(401, "Invalid refresh token");
     if (incomingRefreshToken !== user?.refreshToken) throw new ApiError(401, "Refresh token expired or used");
 
-    const options = { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: "lax" };
+    const options = { httpOnly: true, secure: process.env.NODE_ENV === "production", sameSite: process.env.NODE_ENV === "production" ? "none" : "lax" };
     const { accessToken, refreshToken: newRefreshToken } = await generateAccessAndRefreshTokens(user);
 
     return res
